@@ -1,12 +1,16 @@
 package com.jvitor.portfolioapi.controller.projects;
 
-public enum Tags {
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+public enum TagsProject {
     JAVA,
     SPRING,
     SPRING_BOOT,
     DOCKER,
     KUBERNETES,
+    @JsonProperty("DJANGO")
     DJANGO,
+    @JsonProperty("PYTHON")
     PYTHON,
     JAVASCRIPT,
     TYPESCRIPT,

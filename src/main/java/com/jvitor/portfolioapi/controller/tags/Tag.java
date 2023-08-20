@@ -1,4 +1,4 @@
-package com.jvitor.portfolioapi.controller.projects;
+package com.jvitor.portfolioapi.controller.tags;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -13,6 +13,5 @@ import lombok.*;
 public class Tag {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Enumerated(EnumType.STRING)
-    private TagsProject tag;
+    private String tag;
 }

@@ -1,4 +1,4 @@
-package com.jvitor.portfolioapi.controller.projects;
+package com.jvitor.portfolioapi.controller.tags;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 

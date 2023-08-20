@@ -1,5 +1,6 @@
 package com.jvitor.portfolioapi.controller.projects;
 
+import com.jvitor.portfolioapi.controller.tags.Tag;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
@@ -30,6 +31,7 @@ public class Project {
             joinColumns = @JoinColumn(name = "project_id"),
             inverseJoinColumns = @JoinColumn(name = "tag_id"))
     private Set<Tag> tagsProjects;
+    private String teste;
 
     public Project(ProjectCreate project) {
         this.name = project.name();

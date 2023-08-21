@@ -36,6 +36,7 @@ public class ProjectsController {
         projectRepository.save(projectC);
     }
 
+
     @GetMapping
     public Page<ProjectList> listProjects(@PageableDefault(size = 20, sort = "name") Pageable pageable) {
         return projectRepository.findAllByActiveTrue(pageable).map(ProjectList::new);

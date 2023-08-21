@@ -1,9 +1,6 @@
 package com.jvitor.portfolioapi.controller;
 
-import com.jvitor.portfolioapi.controller.projects.Project;
-import com.jvitor.portfolioapi.controller.projects.ProjectCreate;
-import com.jvitor.portfolioapi.controller.projects.ProjectList;
-import com.jvitor.portfolioapi.controller.projects.ProjectRepository;
+import com.jvitor.portfolioapi.controller.projects.*;
 import com.jvitor.portfolioapi.controller.tags.Tag;
 import com.jvitor.portfolioapi.controller.tags.TagRepository;
 import jakarta.validation.Valid;
@@ -41,6 +38,26 @@ public class ProjectsController {
 
     @GetMapping
     public Page<ProjectList> listProjects(@PageableDefault(size = 20, sort = "name") Pageable pageable) {
-        return projectRepository.findAll(pageable).map(ProjectList::new);
+        return projectRepository.findAllByActiveTrue(pageable).map(ProjectList::new);
+    }
+
+    @GetMapping("/{id}")
+    public ProjectList getProject(@PathVariable Long id) {
+        return new ProjectList(projectRepository.getReferenceById(id));
+    }
+
+    @PutMapping("/{id}")
+    @Transactional
+    public void updateProject(@PathVariable Long id, @RequestBody @Valid ProjectUpdate project) {
+         Project projectData = projectRepository.getReferenceById(id);
+         projectData.update(project, tagRepository);
+    }
+
+    @DeleteMapping("/{id}")
+    @Transactional
+    public void deleteProject(@PathVariable Long id) {
+//        projectRepository.deleteById(id);
+        Project projectData = projectRepository.getReferenceById(id);
+        projectData.deactivate();
     }
 }
